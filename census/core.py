@@ -352,6 +352,14 @@ class ACS5Client(ACSClient):
         return self.get(fields, geo={
             'for': 'zip code tabulation area:{}'.format(zcta),
         }, **kwargs)
+    
+    @supported_years(2019,2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011)
+    def state_zipcode(self, fields, state_fips, zcta, **kwargs):
+        return self.get(fields, geo={
+            'for': 'zip code tabulation area:{}'.format(zcta),
+            'in': 'state:{}'.format(state_fips),
+        }, **kwargs)
+
 
 
 class ACS5DpClient(ACS5Client):
